@@ -1,7 +1,13 @@
 import smtplib
+import argparse
 import os
 
-friend_name = input("Введи свое имя: ")
+parser = argparse.ArgumentParser(description = 'Отправка электронной почты')
+parser.add_argument('-n', '--name', help = 'Имя друга')
+parser.add_argument('-to', '--mailto', help = 'Почта друга')
+args = parser.parse_args()
+
+friend_name = args.name
 my_name = 'Илья'
 website = 'dvmn.org'
 mail_text = '''Привет, %friend_name%! %my_name% приглашает тебя на сайт %website%!
@@ -24,7 +30,7 @@ mail_text = '''Привет, %friend_name%! %my_name% приглашает те�
 mail_text = mail_text.replace('%website%', website).replace('%friend_name%', friend_name).replace('%my_name%', my_name)
 
 from_who = 'tim-star@ya.ru'
-to_who = from_who
+to_who = args.mailto
 
 msg = '''From: mymail@gmail.com
 To: friend@gmail.com

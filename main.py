@@ -29,8 +29,8 @@ mail_text = '''Привет, %friend_name%! %my_name% приглашает те�
 
 mail_text = mail_text.replace('%website%', website).replace('%friend_name%', friend_name).replace('%my_name%', my_name)
 
-from_who = 'tim-star@ya.ru'
-to_who = args.mailto
+mail_from = 'tim-star@ya.ru'
+mail_to = args.mailto
 
 msg = '''From: mymail@gmail.com
 To: friend@gmail.com
@@ -43,5 +43,5 @@ server = smtplib.SMTP_SSL('smtp.yandex.ru:465')
 login = os.getenv("LOGIN")
 password = os.getenv("PASSWORD")
 server.login(login, password)
-server.sendmail(from_who, to_who, msg)
+server.sendmail(mail_from, mail_to, msg)
 server.quit()
